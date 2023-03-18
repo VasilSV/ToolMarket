@@ -11,5 +11,20 @@ public class PagesController {
         return "all";
     }
 
+    @GetMapping("pages/admins")
+    public String admins(){
+        return "admins";
+    }
+
+    @GetMapping("pages/users")
+    public String users(){
+        return "users";
+    }
+
+    @GetMapping("pages/companies")
+    public String companies(){
+        return "companies";
+    }
+
 
 }
