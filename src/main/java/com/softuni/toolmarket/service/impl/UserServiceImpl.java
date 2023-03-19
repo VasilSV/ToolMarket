@@ -7,6 +7,9 @@ import com.softuni.toolmarket.model.repository.UserRepository;
 import com.softuni.toolmarket.model.repository.UserRoleRepository;
 import com.softuni.toolmarket.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -93,5 +96,26 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createAccount(UserRegistrationDTO userRegistrationDTO) {
 
+        UserEntity userEntity = new UserEntity();
+
+        userEntity
+                .setUserName(userRegistrationDTO.getUserName())
+                .setIdentificationNumber(userRegistrationDTO.getIdentificationNumber())
+                .setEmail(userRegistrationDTO.getEmail())
+                .setPassword(passwordEncoder.encode( userRegistrationDTO.getPassword()));
+        userRepository.save(userEntity);
+
+
+        var userDetails = userDetailsService.loadUserByUsername(userRegistrationDTO.getEmail());
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                userDetails,
+                userDetails.getPassword(),
+                userDetails.getAuthorities()
+        );
+
+        SecurityContextHolder.
+                getContext().
+                setAuthentication(authentication);
     }
+
 }

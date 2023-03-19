@@ -13,7 +13,8 @@ public class UserEntity {
     private Long id;
     @Column(nullable = false)
     private String userName;
-    @Column(nullable = false)
+
+    @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
     private String identificationNumber;
@@ -22,6 +23,7 @@ public class UserEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles = new ArrayList<>();
+
 
     public Long getId() {
         return id;

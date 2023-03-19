@@ -26,9 +26,9 @@ public class PagesController {
         return "users";
     }
 
-    @GetMapping("pages/companies")
-    public String companies() {
-        return "companies";
+    @GetMapping("pages/company")
+    public String company() {
+        return "company";
     }
 
 

@@ -33,9 +33,10 @@ public class SecurityConfig {
                 .requestMatchers("/pages/users").hasRole(UserRoleEnum.USER.name())
                 .requestMatchers("/pages/company").hasRole(UserRoleEnum.COMPANY.name())
                 .anyRequest().authenticated().and().formLogin()
+                .loginPage("/users/login")
                 .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/", true)
                 .failureForwardUrl("/users/login-error");
 
         return http.build();
@@ -48,7 +49,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService (){
+    public UserDetailsService userDetailsService (UserRepository userRepository){
         return new AppUserDetailsService(userRepository);
     }
 }
