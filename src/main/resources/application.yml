@@ -8,3 +8,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
+
+app:
+  default:
+    password: 123

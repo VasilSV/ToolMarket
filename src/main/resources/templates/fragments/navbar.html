@@ -14,7 +14,7 @@
                     <a class="nav-link" th:href="@{/pages/all}">All users</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasRole('USER')">
-                    <a class="nav-link" th:href="@{/pages/users}">Moderators</a>
+                    <a class="nav-link" th:href="@{/pages/users}">Users</a>
 
                 <li class="nav-item" sec:authorize="hasRole('COMPANY')">
                     <a class="nav-link" th:href="@{/pages/companies}">Companies</a>

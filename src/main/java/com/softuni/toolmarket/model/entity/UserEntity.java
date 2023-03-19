@@ -20,7 +20,7 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles = new ArrayList<>();
 
     public Long getId() {
@@ -74,6 +74,11 @@ public class UserEntity {
 
     public UserEntity setRoles(List<UserRoleEntity> roles) {
         this.roles = roles;
+        return this;
+    }
+    //адване на роля
+    public UserEntity addRole(UserRoleEntity role){
+        this.roles.add(role);
         return this;
     }
 
