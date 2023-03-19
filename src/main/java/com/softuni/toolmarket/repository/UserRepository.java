@@ -1,4 +1,4 @@
-package com.softuni.toolmarket.model.repository;
+package com.softuni.toolmarket.repository;
 
 import com.softuni.toolmarket.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

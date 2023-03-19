@@ -1,7 +1,7 @@
 package com.softuni.toolmarket.config;
 
 import com.softuni.toolmarket.model.enums.UserRoleEnum;
-import com.softuni.toolmarket.model.repository.UserRepository;
+import com.softuni.toolmarket.repository.UserRepository;
 import com.softuni.toolmarket.service.impl.AppUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -37,7 +37,13 @@ public class SecurityConfig {
                 .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
                 .defaultSuccessUrl("/", true)
-                .failureForwardUrl("/users/login-error");
+                .failureForwardUrl("/users/login-error")
+                .and()
+                .logout()
+                .logoutUrl("/users/logout")
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
 
         return http.build();
     }

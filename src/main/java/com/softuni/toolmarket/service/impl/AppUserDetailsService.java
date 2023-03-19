@@ -1,8 +1,7 @@
 package com.softuni.toolmarket.service.impl;
 import com.softuni.toolmarket.model.entity.UserEntity;
 import com.softuni.toolmarket.model.entity.UserRoleEntity;
-import com.softuni.toolmarket.model.repository.UserRepository;
-import org.apache.naming.factory.SendMailFactory;
+import com.softuni.toolmarket.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

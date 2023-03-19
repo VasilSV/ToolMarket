@@ -1,7 +1,6 @@
 package com.softuni.toolmarket.web;
 
 import com.softuni.toolmarket.model.dto.UserRegistrationDTO;
-import com.softuni.toolmarket.model.repository.UserRepository;
 import com.softuni.toolmarket.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

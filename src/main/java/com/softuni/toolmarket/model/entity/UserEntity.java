@@ -24,6 +24,8 @@ public class UserEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles = new ArrayList<>();
 
+    public UserEntity() {
+    }
 
     public Long getId() {
         return id;

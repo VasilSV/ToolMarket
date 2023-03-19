@@ -1,4 +1,4 @@
-package com.softuni.toolmarket.model.repository;
+package com.softuni.toolmarket.repository;
 
 import com.softuni.toolmarket.model.entity.UserRoleEntity;
 import com.softuni.toolmarket.model.enums.UserRoleEnum;

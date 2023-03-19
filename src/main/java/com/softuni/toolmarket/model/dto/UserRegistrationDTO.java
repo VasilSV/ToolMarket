@@ -1,18 +1,25 @@
 package com.softuni.toolmarket.model.dto;
 
-import org.springframework.lang.NonNull;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 
 public class UserRegistrationDTO {
-@NonNull
+    @NotBlank
     private String userName;
-    @NonNull
+    @NotBlank
     private String identificationNumber;
-    @NonNull
+    @Email
+    @NotBlank
     private String email;
-    @NonNull
+
+    @NotBlank
     private String password;
-    @NonNull
+    @NotBlank
     private String confirmPassword;
+
+    public UserRegistrationDTO() {
+    }
 
     public String getUserName() {
         return userName;
