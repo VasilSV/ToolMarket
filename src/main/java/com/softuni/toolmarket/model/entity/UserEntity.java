@@ -2,6 +2,7 @@ package com.softuni.toolmarket.model.entity;
 
 import jakarta.persistence.*;
 
+import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +15,11 @@ public class UserEntity {
     @Column(nullable = false)
     private String userName;
 
-    @Column(nullable = false, unique = true)
-    private String email;
     @Column(nullable = false)
     private String identificationNumber;
+    @Email
+    @Column(nullable = false, unique = true)
+    private String email;
     @Column(nullable = false)
     private String password;
 
@@ -80,8 +82,9 @@ public class UserEntity {
         this.roles = roles;
         return this;
     }
+
     //адване на роля
-    public UserEntity addRole(UserRoleEntity role){
+    public UserEntity addRole(UserRoleEntity role) {
         this.roles.add(role);
         return this;
     }
