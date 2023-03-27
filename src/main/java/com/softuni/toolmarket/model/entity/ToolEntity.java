@@ -61,7 +61,7 @@ public class ToolEntity {
                 "Id=" + Id +
                 ", toolName='" + toolName + '\'' +
                 ", description='" + description + '\'' +
-                ", userName=" + userName +
+                ", userName=" + (userName!=null ? userName.getUserName():null) +
                 '}';
     }
 }
