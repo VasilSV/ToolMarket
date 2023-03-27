@@ -6,8 +6,9 @@ import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+
 @Table(name = "users")
+@Entity
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +27,19 @@ public class UserEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles = new ArrayList<>();
 
+    @OneToMany(mappedBy = "userName")
+    private List<ToolEntity> toolsList;
+
     public UserEntity() {
+    }
+
+    public List<ToolEntity> getToolsList() {
+        return toolsList;
+    }
+
+    public UserEntity setToolsList(List<ToolEntity> toolsList) {
+        this.toolsList = toolsList;
+        return this;
     }
 
     public Long getId() {
@@ -94,10 +107,11 @@ public class UserEntity {
         return "UserEntity{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
                 ", identificationNumber='" + identificationNumber + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
+                ", toolsList=" + toolsList +
                 '}';
     }
 }

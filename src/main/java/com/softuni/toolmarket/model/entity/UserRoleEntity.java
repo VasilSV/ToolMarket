@@ -6,13 +6,13 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "roles")
 public class UserRoleEntity {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-@Column(nullable = false)
-@Enumerated(EnumType.STRING)
-private UserRoleEnum role;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserRoleEnum role;
 
     public UserRoleEntity() {
     }
