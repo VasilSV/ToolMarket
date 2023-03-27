@@ -15,6 +15,8 @@ public class ToolEntity {
 
     @ManyToOne
     private UserEntity userName;
+    @ManyToOne
+    private ToolTypeEntity toolTypeEntity;
 
     public ToolEntity() {
     }
@@ -55,13 +57,23 @@ public class ToolEntity {
         return this;
     }
 
+    public ToolTypeEntity getToolType() {
+        return toolTypeEntity;
+    }
+
+    public ToolEntity setToolType(ToolTypeEntity toolTypeEntity) {
+        this.toolTypeEntity = toolTypeEntity;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "ToolEntity{" +
                 "Id=" + Id +
                 ", toolName='" + toolName + '\'' +
                 ", description='" + description + '\'' +
-                ", userName=" + (userName!=null ? userName.getUserName():null) +
+                ", userName=" + (userName != null ? userName.getUserName() : null) +
+                ", toolType=" + toolTypeEntity +
                 '}';
     }
 }

@@ -36,8 +36,9 @@ public class ToolsController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ToolsDTO> deleteToolById(@PathVariable("id") Long toolId) {
-        ToolService.deleteById(toolId);
+    public ResponseEntity<ToolsDTO> deleteToolById(@PathVariable("id")Long toolId){
+
+        toolService.deleteById(toolId);
 
         return ResponseEntity.
                 noContent().

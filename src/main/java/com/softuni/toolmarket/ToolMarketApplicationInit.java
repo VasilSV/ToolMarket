@@ -1,7 +1,9 @@
 package com.softuni.toolmarket;
 
 import com.softuni.toolmarket.model.entity.ToolEntity;
+import com.softuni.toolmarket.model.entity.ToolTypeEntity;
 import com.softuni.toolmarket.repository.ToolRepository;
+import com.softuni.toolmarket.repository.ToolTypeRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,33 +14,47 @@ import java.util.List;
 public class ToolMarketApplicationInit implements CommandLineRunner {
 
     private final ToolRepository toolRepository;
+    private final ToolTypeRepository toolTypeRepository;
 
-    public ToolMarketApplicationInit(ToolRepository toolRepository) {
+    public ToolMarketApplicationInit(ToolRepository toolRepository, ToolTypeRepository toolTypeRepository) {
         this.toolRepository = toolRepository;
+        this.toolTypeRepository = toolTypeRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        if (toolRepository.count()==0){
+        if (toolRepository.count() == 0 && toolTypeRepository.count() == 0) {
             initGardenTools();
+            initHandTools();
         }
     }
-    private void initGardenTools(){
-        initTools("Coser","shame","soko");
+
+    private void initGardenTools() {
+        initToolType("Garden", "Coser", "Lopata");
     }
 
-private void initTools(String ... toolName ){
-    ToolEntity tool = new ToolEntity();
-    tool.setToolName(String.valueOf(toolName));
-    tool=toolRepository.save(tool);
+    private void initHandTools() {
+        initToolType("HandTools", "Gloves", "Hat");
+    }
 
-    List<ToolEntity> allTools= new ArrayList<>();
-    allTools.stream().map(tools -> new ToolEntity()).map(aTool -> {
-        return allTools.stream().toList();
-    }).forEach(toolRepository::saveAll);
+    private void initToolType(String toolTypeName, String... tools) {
+        ToolTypeEntity toolType = new ToolTypeEntity();
+        toolType.setToolTypeName(toolTypeName);
+        toolType = toolTypeRepository.save(toolType);
 
-}
+        List<ToolEntity> allTools = new ArrayList<>();
 
+        for (String tool : tools) {
+            ToolEntity aTool = new ToolEntity();
+            aTool.setToolType(toolType);
+            aTool.setToolName(tool);
+
+            allTools.add(aTool);
+        }
+        toolType.setToolEntityList(allTools);
+        toolTypeRepository.save(toolType);
+        toolRepository.saveAll(allTools);
+    }
 
 
 }

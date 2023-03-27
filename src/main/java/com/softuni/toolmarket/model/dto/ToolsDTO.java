@@ -1,8 +1,10 @@
 package com.softuni.toolmarket.model.dto;
 
+import com.softuni.toolmarket.model.entity.ToolTypeEntity;
+
 public class ToolsDTO {
 
-    private Long Id;
+    private Long id;
 
     private String toolName;
 
@@ -10,15 +12,17 @@ public class ToolsDTO {
 
     private UserRegistrationDTO userRegister;
 
+    private ToolTypeDTO toolTypeEntity;
+
     public ToolsDTO() {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public ToolsDTO setId(Long id) {
-        Id = id;
+        id = id;
         return this;
     }
 
@@ -47,5 +51,25 @@ public class ToolsDTO {
     public ToolsDTO setUserRegister(UserRegistrationDTO userRegister) {
         this.userRegister = userRegister;
         return this;
+    }
+
+    public ToolTypeDTO getToolTypeEntity() {
+        return toolTypeEntity;
+    }
+
+    public ToolsDTO setToolTypeEntity(ToolTypeDTO toolTypeEntity) {
+        this.toolTypeEntity = toolTypeEntity;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "ToolsDTO{" +
+                "id=" + id +
+                ", toolName='" + toolName + '\'' +
+                ", description='" + description + '\'' +
+                ", userRegister=" + userRegister +
+                ", toolTypeEntity=" + toolTypeEntity +
+                '}';
     }
 }
