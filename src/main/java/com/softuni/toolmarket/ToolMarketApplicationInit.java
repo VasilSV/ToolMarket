@@ -26,6 +26,7 @@ public class ToolMarketApplicationInit implements CommandLineRunner {
         if (toolRepository.count() == 0 && toolTypeRepository.count() == 0) {
             initGardenTools();
             initHandTools();
+            initEquipment();
         }
     }
 
@@ -34,7 +35,11 @@ public class ToolMarketApplicationInit implements CommandLineRunner {
     }
 
     private void initHandTools() {
-        initToolType("HandTools", "Gloves", "Hat");
+        initToolType("HandTools", "Hammer", "Pliers");
+    }
+
+    private void initEquipment(){
+        initToolType("Equipment","Gloves","Helmet");
     }
 
     private void initToolType(String toolTypeName, String... tools) {
