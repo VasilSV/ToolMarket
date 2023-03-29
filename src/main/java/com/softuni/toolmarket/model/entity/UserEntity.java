@@ -109,7 +109,7 @@ public class UserEntity {
                 ", userName='" + userName + '\'' +
                 ", identificationNumber='" + identificationNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", password='" + (password != null ? "[PROVIDED]" : "[N/A]") + '\'' +
                 ", roles=" + roles +
                 ", toolsList=" + toolsList +
                 '}';

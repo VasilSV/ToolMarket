@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class AppUserDetailsService implements UserDetailsService{
 private final UserRepository userRepository;
@@ -27,18 +27,21 @@ private final UserRepository userRepository;
                 orElseThrow(() -> new UsernameNotFoundException("User with email " + email + " not found."));
     }
     private UserDetails map(UserEntity userEntity) {
-
         return new User(
                 userEntity.getEmail(),
                 userEntity.getPassword(),
-                asGrantedAuthorities(userEntity.getRoles())
+                extractAuthorities(userEntity)
         );
     }
 
-    private List<GrantedAuthority> asGrantedAuthorities(List<UserRoleEntity> roleEntities) {
-        return roleEntities.
+    private List<GrantedAuthority> extractAuthorities(UserEntity userEntity) {
+        return userEntity.
+                getRoles().
                 stream().
-                map(r -> new SimpleGrantedAuthority("ROLE_" + r.getRole().name())).
-                collect(Collectors.toList());
+                map(this::mapRole).
+                toList();
+    }
+    private GrantedAuthority mapRole(UserRoleEntity userRoleEntity) {
+        return new SimpleGrantedAuthority("ROLE_" + userRoleEntity.getRole().name());
     }
 }

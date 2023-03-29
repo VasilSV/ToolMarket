@@ -12,19 +12,24 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.context.DelegatingSecurityContextRepository;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 
 @Configuration
 public class SecurityConfig {
 
-    private final   UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    public SecurityConfig (UserRepository userRepository){
-        this.userRepository=userRepository;
+    public SecurityConfig(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http,
+                                           SecurityContextRepository securityContextRepository) throws Exception {
         http.
                 authorizeHttpRequests().
                 requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
@@ -36,14 +41,16 @@ public class SecurityConfig {
                 .loginPage("/users/login")
                 .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
-                .defaultSuccessUrl("/",true)
+                .defaultSuccessUrl("/", true)
                 .failureForwardUrl("/users/login-error")
                 .and()
                 .logout()
                 .logoutUrl("/users/logout")
                 .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID");
+                .invalidateHttpSession(true).
+                and().
+                securityContext().
+                securityContextRepository(securityContextRepository);
 
         return http.build();
     }
@@ -55,7 +62,15 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService (UserRepository userRepository){
+    public UserDetailsService userDetailsService(UserRepository userRepository) {
         return new AppUserDetailsService(userRepository);
+    }
+
+    @Bean
+    public SecurityContextRepository securityContextRepository() {
+        return new DelegatingSecurityContextRepository(
+                new RequestAttributeSecurityContextRepository(),
+                new HttpSessionSecurityContextRepository()
+        );
     }
 }

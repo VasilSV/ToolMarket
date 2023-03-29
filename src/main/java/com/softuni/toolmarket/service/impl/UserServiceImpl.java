@@ -6,15 +6,17 @@ import com.softuni.toolmarket.model.entity.UserRoleEntity;
 import com.softuni.toolmarket.repository.UserRepository;
 import com.softuni.toolmarket.repository.UserRoleRepository;
 import com.softuni.toolmarket.service.UserService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import static com.softuni.toolmarket.model.enums.UserRoleEnum.*;
 
@@ -27,8 +29,13 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final String defaultPassword ;
 
-
-    public UserServiceImpl(UserDetailsService userDetailsService, UserRoleRepository userRoleRepository
+    @PostConstruct
+    public void init() {
+        initUserRoles();
+        initUsers();
+    }
+    public UserServiceImpl(UserDetailsService userDetailsService,
+                           UserRoleRepository userRoleRepository
             , UserRepository userRepository, PasswordEncoder passwordEncoder
             ,@Value("${app.default.password}") String defaultPassword) {
 
@@ -94,28 +101,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createAccount(UserRegistrationDTO userRegistrationDTO) {
+    public void createAccount(UserRegistrationDTO userRegistrationDTO,
+                              Consumer<Authentication> successfulLoginProcessor) {
 
-        UserEntity userEntity = new UserEntity();
+        UserEntity userEntity = new UserEntity().
+                setUserName(userRegistrationDTO.getUserName()).
+                setIdentificationNumber(userRegistrationDTO.getIdentificationNumber()).
+                setEmail(userRegistrationDTO.getEmail()).
+                setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
 
-        userEntity
-                .setUserName(userRegistrationDTO.getUserName())
-                .setIdentificationNumber(userRegistrationDTO.getIdentificationNumber())
-                .setEmail(userRegistrationDTO.getEmail())
-                .setPassword(passwordEncoder.encode( userRegistrationDTO.getPassword()));
         userRepository.save(userEntity);
 
+        UserDetails userDetails = userDetailsService.loadUserByUsername(userRegistrationDTO.getEmail());
 
-        var userDetails = userDetailsService.loadUserByUsername(userRegistrationDTO.getEmail());
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 userDetails,
                 userDetails.getPassword(),
                 userDetails.getAuthorities()
         );
 
-        SecurityContextHolder.
-                getContext().
-                setAuthentication(authentication);
+        successfulLoginProcessor.accept(authentication);
     }
-
 }
