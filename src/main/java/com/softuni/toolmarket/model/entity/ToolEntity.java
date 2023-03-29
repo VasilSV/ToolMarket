@@ -2,6 +2,8 @@ package com.softuni.toolmarket.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Table(name = "tools")
 @Entity
 public class ToolEntity {
@@ -17,6 +19,8 @@ public class ToolEntity {
     private UserEntity userName;
     @ManyToOne
     private ToolTypeEntity toolTypeEntity;
+    @ManyToMany(mappedBy = "toolsOrder")
+    private List<OrdersEntity> orderedTools;
 
     public ToolEntity() {
     }
@@ -66,6 +70,24 @@ public class ToolEntity {
         return this;
     }
 
+    public ToolTypeEntity getToolTypeEntity() {
+        return toolTypeEntity;
+    }
+
+    public ToolEntity setToolTypeEntity(ToolTypeEntity toolTypeEntity) {
+        this.toolTypeEntity = toolTypeEntity;
+        return this;
+    }
+
+    public List<OrdersEntity> getOrderedTools() {
+        return orderedTools;
+    }
+
+    public ToolEntity setOrderedTools(List<OrdersEntity> orderedTools) {
+        this.orderedTools = orderedTools;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "ToolEntity{" +
@@ -73,7 +95,8 @@ public class ToolEntity {
                 ", toolName='" + toolName + '\'' +
                 ", description='" + description + '\'' +
                 ", userName=" + (userName != null ? userName.getUserName() : null) +
-                ", toolType=" + toolTypeEntity +
+                ", toolTypeEntity=" + toolTypeEntity +
+                ", orderedTools=" + orderedTools +
                 '}';
     }
 }

@@ -29,6 +29,8 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "userName")
     private List<ToolEntity> toolsList;
+    @OneToMany(mappedBy = "client")
+    private List<OrdersEntity> orders;
 
     public UserEntity() {
     }
@@ -102,6 +104,15 @@ public class UserEntity {
         return this;
     }
 
+    public List<OrdersEntity> getOrders() {
+        return orders;
+    }
+
+    public UserEntity setOrders(List<OrdersEntity> orders) {
+        this.orders = orders;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "UserEntity{" +
@@ -112,6 +123,7 @@ public class UserEntity {
                 ", password='" + (password != null ? "[PROVIDED]" : "[N/A]") + '\'' +
                 ", roles=" + roles +
                 ", toolsList=" + toolsList +
+                ", orders=" + orders +
                 '}';
     }
 }
