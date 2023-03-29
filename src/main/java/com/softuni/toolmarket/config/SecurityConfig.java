@@ -6,6 +6,7 @@ import com.softuni.toolmarket.service.impl.AppUserDetailsService;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,6 +19,7 @@ import org.springframework.security.web.context.DelegatingSecurityContextReposit
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -88,6 +90,11 @@ public class SecurityConfig {
 
 
         return modelMapper;
+    }
+    @Bean
+    public RestTemplate create(RestTemplateBuilder restTemplateBuilder) {
+        return restTemplateBuilder.
+                build();
     }
 
 }
