@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
             UserEntity companyUser = new UserEntity()
                     .setUserName("Company")
                     .setEmail("company@abv.bg")
-                    .setIdentificationNumber("BG160015310")
+                    .setIdentificationNumber("BG")
                     .setPassword(passwordEncoder.encode(defaultPassword))
                     .setRoles(List.of(companyRole));
 

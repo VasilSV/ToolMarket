@@ -1,13 +1,17 @@
 package com.softuni.toolmarket.web;
 
+import ch.qos.logback.core.model.Model;
+import com.softuni.toolmarket.service.impl.AppUserDetailsService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class PagesController {
+public class PagesController{
 
     @GetMapping("/")
-    public String home() {
+    public String home(){
+
         return "index";
     }
 

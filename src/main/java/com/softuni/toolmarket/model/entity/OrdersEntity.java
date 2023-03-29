@@ -12,6 +12,8 @@ public class OrdersEntity {
     private Long id;
     @Column(nullable = false)
     private String Quantity;
+
+
     @ManyToOne
     private UserEntity client;
     @ManyToMany
