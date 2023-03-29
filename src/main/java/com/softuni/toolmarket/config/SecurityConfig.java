@@ -3,6 +3,8 @@ package com.softuni.toolmarket.config;
 import com.softuni.toolmarket.model.enums.UserRoleEnum;
 import com.softuni.toolmarket.repository.UserRepository;
 import com.softuni.toolmarket.service.impl.AppUserDetailsService;
+import org.modelmapper.Converter;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +18,10 @@ import org.springframework.security.web.context.DelegatingSecurityContextReposit
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 @Configuration
 public class SecurityConfig {
@@ -73,4 +79,15 @@ public class SecurityConfig {
                 new HttpSessionSecurityContextRepository()
         );
     }
+    @Bean
+    public ModelMapper modelMapper() {
+        ModelMapper modelMapper = new ModelMapper();
+        Converter<String, LocalDate> toLocalDate = s -> s.getSource() == null ? null
+                : LocalDate.parse((s.getSource()), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        modelMapper.addConverter(toLocalDate);
+
+
+        return modelMapper;
+    }
+
 }

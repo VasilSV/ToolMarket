@@ -2,6 +2,8 @@ package com.softuni.toolmarket.model.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -11,7 +13,9 @@ public class OrdersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String Quantity;
+    private String quantity;
+    @Column(nullable = false )
+    private LocalDate orderTime;
 
 
     @ManyToOne
@@ -32,11 +36,11 @@ public class OrdersEntity {
     }
 
     public String getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public OrdersEntity setQuantity(String quantity) {
-        Quantity = quantity;
+        quantity = quantity;
         return this;
     }
 
@@ -56,5 +60,25 @@ public class OrdersEntity {
     public OrdersEntity setToolsOrder(List<ToolEntity> toolsOrder) {
         this.toolsOrder = toolsOrder;
         return this;
+    }
+
+    public LocalDate getOrderTime() {
+        return orderTime;
+    }
+
+    public OrdersEntity setOrderTime(LocalDate orderTime) {
+        this.orderTime = orderTime;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "OrdersEntity{" +
+                "id=" + id +
+                ", quantity='" + quantity + '\'' +
+                ", orderTime=" + orderTime +
+                ", client=" + client +
+                ", toolsOrder=" + toolsOrder +
+                '}';
     }
 }

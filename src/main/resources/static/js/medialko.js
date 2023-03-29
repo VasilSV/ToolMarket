@@ -1,3 +1,3 @@
 function medialko(){
-   // return false
+    return false
 }

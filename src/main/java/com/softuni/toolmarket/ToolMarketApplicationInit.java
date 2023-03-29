@@ -31,11 +31,11 @@ public class ToolMarketApplicationInit implements CommandLineRunner {
     }
 
     private void initGardenTools() {
-        initToolType("Garden", "Coser", "Lopata");
+        initToolType("Garden", "Coser", "Shovel");
     }
 
     private void initHandTools() {
-        initToolType("HandTools", "Hammer", "Pliers");
+        initToolType("HandTools", "Hammer", "Magnetic Hammer");
     }
 
     private void initEquipment(){

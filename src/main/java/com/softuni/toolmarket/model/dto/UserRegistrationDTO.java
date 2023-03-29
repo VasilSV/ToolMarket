@@ -11,6 +11,7 @@ public class UserRegistrationDTO {
     private String identificationNumber;
 
     @NotBlank
+    @Email
     private String email;
 
     @NotBlank
