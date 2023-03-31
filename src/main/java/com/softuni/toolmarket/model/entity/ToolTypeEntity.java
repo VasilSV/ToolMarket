@@ -11,7 +11,7 @@ public class ToolTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    @Column
+    @Column(nullable = false)
     private String toolTypeName;
 
     @OneToMany(mappedBy = "toolTypeEntity")

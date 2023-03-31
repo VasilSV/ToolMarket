@@ -1,7 +1,10 @@
 package com.softuni.toolmarket.model.dto;
 
 import com.softuni.toolmarket.model.entity.ToolEntity;
+import com.softuni.toolmarket.model.enums.OrderedProductName;
 
+import javax.validation.constraints.FutureOrPresent;
+import java.time.LocalDate;
 import java.util.List;
 
 public class OrdersDTO {
@@ -9,8 +12,10 @@ public class OrdersDTO {
     private Long id;
 
     private String quantity;
+    @FutureOrPresent(message = "Impossible performance")
+    private LocalDate orderTime;
 
-    private String orderTime;
+    private OrderedProductName productName;
 
     private List<ToolEntity> toolsOrders;
 
@@ -35,11 +40,11 @@ public class OrdersDTO {
         return this;
     }
 
-    public String getOrderTime() {
+    public LocalDate getOrderTime() {
         return orderTime;
     }
 
-    public OrdersDTO setOrderTime(String orderTime) {
+    public OrdersDTO setOrderTime(LocalDate orderTime) {
         this.orderTime = orderTime;
         return this;
     }
@@ -51,5 +56,25 @@ public class OrdersDTO {
     public OrdersDTO setToolsOrders(List<ToolEntity> toolsOrders) {
         this.toolsOrders = toolsOrders;
         return this;
+    }
+
+    public OrderedProductName getProductName() {
+        return productName;
+    }
+
+    public OrdersDTO setProductName(OrderedProductName productName) {
+        this.productName = productName;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "OrdersDTO{" +
+                "id=" + id +
+                ", quantity='" + quantity + '\'' +
+                ", orderTime='" + orderTime + '\'' +
+                ", productName=" + productName +
+                ", toolsOrders=" + toolsOrders +
+                '}';
     }
 }

@@ -10,9 +10,9 @@ public class ToolEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String toolName;
-    @Column(columnDefinition = "text")
+    @Column(nullable = false, columnDefinition = "text")
     private String description;
 
     @ManyToOne

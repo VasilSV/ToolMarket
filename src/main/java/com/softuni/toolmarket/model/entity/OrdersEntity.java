@@ -1,9 +1,10 @@
 package com.softuni.toolmarket.model.entity;
 
+import com.softuni.toolmarket.model.enums.OrderedProductName;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Date;
+
 import java.util.List;
 
 @Entity
@@ -14,8 +15,11 @@ public class OrdersEntity {
     private Long id;
     @Column(nullable = false)
     private String quantity;
-    @Column(nullable = false )
+    @Column(nullable = false)
     private LocalDate orderTime;
+    @Column(nullable = false , unique = true)
+    @Enumerated(EnumType.STRING)
+    private OrderedProductName productName;
 
 
     @ManyToOne
@@ -71,12 +75,22 @@ public class OrdersEntity {
         return this;
     }
 
+    public OrderedProductName getProductName() {
+        return productName;
+    }
+
+    public OrdersEntity setProductName(OrderedProductName productName) {
+        this.productName = productName;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "OrdersEntity{" +
                 "id=" + id +
                 ", quantity='" + quantity + '\'' +
                 ", orderTime=" + orderTime +
+                ", productName=" + productName +
                 ", client=" + client +
                 ", toolsOrder=" + toolsOrder +
                 '}';
