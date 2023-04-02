@@ -13,279 +13,158 @@
     <h2 class="text-center text-white">A page for all costumers</h2>
 </div>
 <div class="col-md-6 ">
-    <img class="rounded" width="60%" src="/images/welcome.jpg" alt="Welcome image">
+    <img class="rounded" width="30%" src="/images/welcome.jpg" alt="Welcome image">
 </div>
 <main>
     <div class="container bg-blur rounded mt-5 mb-4">
         <h1>All products to buy</h1>
         <div class="row mt-3 mb-3">
-            <div class="col-5 bg-dark rounded m-auto" style="height: 40vh; overflow: auto">
-                <h3 class="mySticky bg-gray text-dark rounded">Shovel</h3>
+            <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto">
+                <h3 class="mySticky bg-gray text-dark rounded">Tools</h3>
                 <div class="mt-3 rounded badge-info">
                     <img class="mr-2" src="/images/shovel.jpg" alt="Shovel" width="50px" height="50px">
-                    <span>Name: Shovel Price: 11 lv</span>
-                    <a class="ml-3 text-danger" href="/">Buy</a>
+                    <span>Name: Shovel Price: 8 lv</span>
                 </div>
-                <form class="mx-auto w-25 bg-blur rounded" th:object="${ordersDTO}" method="POST" action="/all/add">
-                    <div class="form-group">
-                        <div class="text-white label-holder d-flex justify-content-center">
-                            <label for="condition1" class="h4 mb-2">Количество</label>
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" id="name" name="name"/>
-                    <small class="text-danger"> Name error</small>
+                <select class="browser-default custom-select" id="condition1" name="condition">
+                    <option value="">Избери количество</option>
+                    <option value="x 10 boxes">x 10 BOXES</option>
+                    <option value="x 20 BOXES">x 20 BOXES</option>
+                    <option value="x 30 BOXES">x 30 BOXES</option>
+                    <option value="x 40 boxes">x 40 BOXES</option>
+                    <option value="x 50 boxes">x 50 BOXES</option>
+                    <option value="x 60 boxes">x 60 BOXES</option>
+                    <option value="x 70 boxes">x 70 BOXES</option>
+                    <option value="x 80 boxes">x 80 BOXES</option>
+                    <option value="x 90 boxes">x 90 BOXES</option>
+                </select>
+                <small class="text-danger"></small>
+                <a class="ml-md-5 text-danger" href="/">Buy</a>
+                </div>
+                </div>
             </div>
-            <select class="browser-default custom-select" id="condition1" name="condition">
-                <option value="">Избери количество</option>
-                <option value="x 10 boxes">x 10 BOXES</option>
-                <option value="x 20 BOXES">x 20 BOXES</option>
-                <option value="x 30 BOXES">x 30 BOXES</option>
-                <option value="x 40 boxes">x 40 BOXES</option>
-                <option value="x 50 boxes">x 50 BOXES</option>
-                <option value="x 60 boxes">x 60 BOXES</option>
-                <option value="x 70 boxes">x 70 BOXES</option>
-                <option value="x 80 boxes">x 80 BOXES</option>
-                <option value="x 90 boxes">x 90 BOXES</option>
-            </select>
-
-            <small class="text-danger"></small>
-        </div>
-
-        <div class="button-holder d-flex justify-content-center">
-            <button type="submit" class="btn btn-warning  mb-3" value="Register">Поръчай</button>
-        </div>
-
-
-        <div class="button-holder d-flex justify-content-center">
-            <button type="submit" class="btn btn-warning  mb-3" value="Register">Запитване за по големи
-                количества в галерия контакти
-            </button>
-        </div>
-
-        </form>
-    </div>
-    <div class="row mt-3 mb-3">
-        <div class="col-5 bg-dark rounded m-auto" style="height: 40vh; overflow: auto">
-            <h3 class="mySticky bg-gray text-dark rounded">Foods</h3>
-            <div class="mt-3 rounded badge-info">
-                <img class="mr-2" src="/images/shovel.jpg" alt="Food" width="50px" height="50px">
-                <span>Name: {name} Price: {price} lv</span>
-                <a class="ml-3 text-danger" href="/">Buy</a>
+            <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto">
+                <h3 class="mySticky bg-gray text-dark rounded">Tools</h3>
+                <div class="mt-3 rounded badge-warning">
+                    <img class="mr-2" src="/images/coser.jpg" alt="Coser" width="50px" height="50px">
+                    <span>Name: Coser Price: 22 lv</span>
+                </div>
+                <select class="browser-default custom-select" id="condition2" name="condition">
+                    <option value="">Избери количество</option>
+                    <option value="x 10 boxes">x 10 BOXES</option>
+                    <option value="x 20 BOXES">x 20 BOXES</option>
+                    <option value="x 30 BOXES">x 30 BOXES</option>
+                    <option value="x 40 boxes">x 40 BOXES</option>
+                    <option value="x 50 boxes">x 50 BOXES</option>
+                    <option value="x 60 boxes">x 60 BOXES</option>
+                    <option value="x 70 boxes">x 70 BOXES</option>
+                    <option value="x 80 boxes">x 80 BOXES</option>
+                    <option value="x 90 boxes">x 90 BOXES</option>
+                </select>
+                <small class="text-danger"></small>
+                <a class="ml-md-5 text-danger" href="/">Buy</a>
             </div>
-            <form class="mx-auto w-25 bg-blur rounded" method="" action="/">
-                <div class="form-group">
-                    <div class="text-white label-holder d-flex justify-content-center">
-                        <label for="condition2" class="h4 mb-2">Количество</label>
-                    </div>
-                    <select class="browser-default custom-select" id="condition2" name="condition">
-                        <option value="">Избери количество</option>
-                        <option value="x 10 boxes">x 10 BOXES</option>
-                        <option value="x 20 BOXES">x 20 BOXES</option>
-                        <option value="x 30 BOXES">x 30 BOXES</option>
-                        <option value="x 40 boxes">x 40 BOXES</option>
-                        <option value="x 50 boxes">x 50 BOXES</option>
-                        <option value="x 60 boxes">x 60 BOXES</option>
-                        <option value="x 70 boxes">x 70 BOXES</option>
-                        <option value="x 80 boxes">x 80 BOXES</option>
-                        <option value="x 90 boxes">x 90 BOXES</option>
-                    </select>
-
-                    <small class="text-danger"></small>
                 </div>
-
-                <div class="button-holder d-flex justify-content-center">
-                    <button type="submit" class="btn btn-warning  mb-3" value="Register">Поръчай</button>
-                </div>
-
-
-                <div class="button-holder d-flex justify-content-center">
-                    <button type="submit" class="btn btn-warning  mb-3" value="Register">Запитване за по големи
-                        количества в галерия контакти
-                    </button>
-                </div>
-
-            </form>
+            </div>
         </div>
         <div class="row mt-3 mb-3">
-            <div class="col-5 bg-dark rounded m-auto" style="height: 40vh; overflow: auto">
-                <h3 class="mySticky bg-gray text-dark rounded">Foods</h3>
+            <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto">
+                <h3 class="mySticky bg-gray text-dark rounded">Tools</h3>
                 <div class="mt-3 rounded badge-info">
-                    <img class="mr-2" src="/images/shovel.jpg" alt="Food" width="50px" height="50px">
-                    <span>Name: {name} Price: {price} lv</span>
-                    <a class="ml-3 text-danger" href="/">Buy</a>
+                    <img class="mr-2" src="/images/hammer.jpg" alt="Hammer" width="50px" height="50px">
+                    <span>Name: Hammer Price: 32 lv</span>
                 </div>
-                <form class="mx-auto w-25 bg-blur rounded" method="" action="/">
-                    <div class="form-group">
-                        <div class="text-white label-holder d-flex justify-content-center">
-                            <label for="condition3" class="h4 mb-2">Количество</label>
-                        </div>
-                        <select class="browser-default custom-select" id="condition3" name="condition">
-                            <option value="">Избери количество</option>
-                            <option value="x 10 boxes">x 10 BOXES</option>
-                            <option value="x 20 BOXES">x 20 BOXES</option>
-                            <option value="x 30 BOXES">x 30 BOXES</option>
-                            <option value="x 40 boxes">x 40 BOXES</option>
-                            <option value="x 50 boxes">x 50 BOXES</option>
-                            <option value="x 60 boxes">x 60 BOXES</option>
-                            <option value="x 70 boxes">x 70 BOXES</option>
-                            <option value="x 80 boxes">x 80 BOXES</option>
-                            <option value="x 90 boxes">x 90 BOXES</option>
-                        </select>
-
-                        <small class="text-danger"></small>
-                    </div>
-
-                    <div class="button-holder d-flex justify-content-center">
-                        <button type="submit" class="btn btn-warning  mb-3" value="Register">Поръчай</button>
-                    </div>
-
-
-                    <div class="button-holder d-flex justify-content-center">
-                        <button type="submit" class="btn btn-warning  mb-3" value="Register">Запитване за по големи
-                            количества в галерия контакти
-                        </button>
-                    </div>
-
-                </form>
+                <select class="browser-default custom-select" id="condition3" name="condition">
+                    <option value="">Избери количество</option>
+                    <option value="x 10 boxes">x 10 BOXES</option>
+                    <option value="x 20 BOXES">x 20 BOXES</option>
+                    <option value="x 30 BOXES">x 30 BOXES</option>
+                    <option value="x 40 boxes">x 40 BOXES</option>
+                    <option value="x 50 boxes">x 50 BOXES</option>
+                    <option value="x 60 boxes">x 60 BOXES</option>
+                    <option value="x 70 boxes">x 70 BOXES</option>
+                    <option value="x 80 boxes">x 80 BOXES</option>
+                    <option value="x 90 boxes">x 90 BOXES</option>
+                </select>
+                <small class="text-danger"></small>
+                <a class="ml-md-5 text-danger" href="/">Buy</a>
             </div>
-            <div class="row mt-3 mb-3">
-                <div class="col-5 bg-dark rounded m-auto" style="height: 40vh; overflow: auto">
-                    <h3 class="mySticky bg-gray text-dark rounded">Foods</h3>
-                    <div class="mt-3 rounded badge-info">
-                        <img class="mr-2" src="/images/shovel.jpg" alt="Food" width="50px" height="50px">
-                        <span>Name: {name} Price: {price} lv</span>
-                        <a class="ml-3 text-danger" href="/">Buy</a>
-                    </div>
-                    <form class="mx-auto w-25 bg-blur rounded" method="" action="/">
-                        <div class="form-group">
-                            <div class="text-white label-holder d-flex justify-content-center">
-                                <label for="condition4" class="h4 mb-2">Количество</label>
-                            </div>
-                            <select class="browser-default custom-select" id="condition4" name="condition">
-                                <option value="">Избери количество</option>
-                                <option value="x 10 boxes">x 10 BOXES</option>
-                                <option value="x 20 BOXES">x 20 BOXES</option>
-                                <option value="x 30 BOXES">x 30 BOXES</option>
-                                <option value="x 40 boxes">x 40 BOXES</option>
-                                <option value="x 50 boxes">x 50 BOXES</option>
-                                <option value="x 60 boxes">x 60 BOXES</option>
-                                <option value="x 70 boxes">x 70 BOXES</option>
-                                <option value="x 80 boxes">x 80 BOXES</option>
-                                <option value="x 90 boxes">x 90 BOXES</option>
-                            </select>
-
-                            <small class="text-danger"></small>
-                        </div>
-
-                        <div class="button-holder d-flex justify-content-center">
-                            <button type="submit" class="btn btn-warning  mb-3" value="Register">Поръчай</button>
-                        </div>
-
-
-                        <div class="button-holder d-flex justify-content-center">
-                            <button type="submit" class="btn btn-warning  mb-3" value="Register">Запитване за по големи
-                                количества в галерия контакти
-                            </button>
-                        </div>
-
-                    </form>
                 </div>
-                <div class="row mt-3 mb-3">
-                    <div class="col-5 bg-dark rounded m-auto" style="height: 40vh; overflow: auto">
-                        <h3 class="mySticky bg-gray text-dark rounded">Foods</h3>
-                        <div class="mt-3 rounded badge-info">
-                            <img class="mr-2" src="/images/shovel.jpg" alt="Food" width="50px" height="50px">
-                            <span>Name: {name} Price: {price} lv</span>
-                            <a class="ml-3 text-danger" href="/">Buy</a>
-                        </div>
-                        <form class="mx-auto w-25 bg-blur rounded" method="" action="/">
-                            <div class="form-group">
-                                <div class="text-white label-holder d-flex justify-content-center">
-                                    <label for="condition5" class="h4 mb-2">Количество</label>
-                                </div>
-                                <select class="browser-default custom-select" id="condition5" name="condition">
-                                    <option value="">Избери количество</option>
-                                    <option value="x 10 boxes">x 10 BOXES</option>
-                                    <option value="x 20 BOXES">x 20 BOXES</option>
-                                    <option value="x 30 BOXES">x 30 BOXES</option>
-                                    <option value="x 40 boxes">x 40 BOXES</option>
-                                    <option value="x 50 boxes">x 50 BOXES</option>
-                                    <option value="x 60 boxes">x 60 BOXES</option>
-                                    <option value="x 70 boxes">x 70 BOXES</option>
-                                    <option value="x 80 boxes">x 80 BOXES</option>
-                                    <option value="x 90 boxes">x 90 BOXES</option>
-                                </select>
-
-                                <small class="text-danger"></small>
-                            </div>
-
-                            <div class="button-holder d-flex justify-content-center">
-                                <button type="submit" class="btn btn-warning  mb-3" value="Register">Поръчай</button>
-                            </div>
-
-
-                            <div class="button-holder d-flex justify-content-center">
-                                <button type="submit" class="btn btn-warning  mb-3" value="Register">Запитване за по големи
-                                    количества в галерия контакти
-                                </button>
-                            </div>
-
-                        </form>
-                    </div>
-                    <div class="row mt-3 mb-3">
-                        <div class="col-5 bg-dark rounded m-auto" style="height: 40vh; overflow: auto">
-                            <h3 class="mySticky bg-gray text-dark rounded">Foods</h3>
-                            <div class="mt-3 rounded badge-info">
-                                <img class="mr-2" src="/images/shovel.jpg" alt="Food" width="50px" height="50px">
-                                <span>Name: {name} Price: {price} lv</span>
-                                <a class="ml-3 text-danger" href="/">Buy</a>
-                            </div>
-                            <form class="mx-auto w-25 bg-blur rounded" method="" action="/">
-                                <div class="form-group">
-                                    <div class="text-white label-holder d-flex justify-content-center">
-                                        <label for="condition6" class="h4 mb-2">Количество</label>
-                                    </div>
-                                    <select class="browser-default custom-select" id="condition6" name="condition">
-                                        <option value="">Избери количество</option>
-                                        <option value="x 10 boxes">x 10 BOXES</option>
-                                        <option value="x 20 BOXES">x 20 BOXES</option>
-                                        <option value="x 30 BOXES">x 30 BOXES</option>
-                                        <option value="x 40 boxes">x 40 BOXES</option>
-                                        <option value="x 50 boxes">x 50 BOXES</option>
-                                        <option value="x 60 boxes">x 60 BOXES</option>
-                                        <option value="x 70 boxes">x 70 BOXES</option>
-                                        <option value="x 80 boxes">x 80 BOXES</option>
-                                        <option value="x 90 boxes">x 90 BOXES</option>
-                                    </select>
-
-                                    <small class="text-danger"></small>
-                                </div>
-
-                                <div class="button-holder d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-warning  mb-3" value="Register">Поръчай</button>
-                                </div>
-
-
-                                <div class="button-holder d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-warning  mb-3" value="Register">Запитване за по големи
-                                        количества в галерия контакти
-                                    </button>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                    <a href="/" class="btn btn-danger">Buy all products for {totalPriceOfProducts} lv|</a>
+            </div>
+            <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto">
+                <h3 class="mySticky bg-gray text-dark rounded">Tools</h3>
+                <div class="mt-3 rounded badge-warning">
+                    <img class="mr-2" src="/images/magneticHammer.jpg" alt="Magnetic" width="50px" height="50px">
+                    <span>Name: Magnetic Hammer Price: 44 lv</span>
+                </div>
+                <select class="browser-default custom-select" id="condition4" name="condition">
+                    <option value="">Избери количество</option>
+                    <option value="x 10 boxes">x 10 BOXES</option>
+                    <option value="x 20 BOXES">x 20 BOXES</option>
+                    <option value="x 30 BOXES">x 30 BOXES</option>
+                    <option value="x 40 boxes">x 40 BOXES</option>
+                    <option value="x 50 boxes">x 50 BOXES</option>
+                    <option value="x 60 boxes">x 60 BOXES</option>
+                    <option value="x 70 boxes">x 70 BOXES</option>
+                    <option value="x 80 boxes">x 80 BOXES</option>
+                    <option value="x 90 boxes">x 90 BOXES</option>
+                </select>
+                <small class="text-danger"></small>
+                <a class="ml-md-5 text-danger" href="/">Buy</a>
+            </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+        <div class="row mt-3 mb-3">
+            <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto">
+                <h3 class="mySticky bg-gray text-dark rounded">Tools</h3>
+                <div class="mt-3 rounded badge-success">
+                    <img class="mr-2" src="/images/hat.jpg" alt="Helmet" width="50px" height="50px">
+                    <span>Name: Helmet Price: 9 lv</span>
+                </div>
+                <select class="browser-default custom-select" id="condition5" name="condition">
+                    <option value="">Избери количество</option>
+                    <option value="x 10 boxes">x 10 BOXES</option>
+                    <option value="x 20 BOXES">x 20 BOXES</option>
+                    <option value="x 30 BOXES">x 30 BOXES</option>
+                    <option value="x 40 boxes">x 40 BOXES</option>
+                    <option value="x 50 boxes">x 50 BOXES</option>
+                    <option value="x 60 boxes">x 60 BOXES</option>
+                    <option value="x 70 boxes">x 70 BOXES</option>
+                    <option value="x 80 boxes">x 80 BOXES</option>
+                    <option value="x 90 boxes">x 90 BOXES</option>
+                </select>
+                <small class="text-danger"></small>
+                <a class="ml-md-5 text-danger" href="/">Buy</a>
+            </div>
+                </div>
+            </div>
+            <div class="col-5 bg-dark rounded m-auto" style="height: 30vh; overflow: auto">
+                <h3 class="mySticky bg-gray text-dark rounded">Tools</h3>
+                <div class="mt-3 rounded badge-secondary">
+                    <img class="mr-2" src="/images/gloves.jpg" alt="Gloves" width="50px" height="50px">
+                    <span>Name: Gloves Price: 2 lv</span>
+                </div>
+                <select class="browser-default custom-select" id="condition6" name="condition">
+                    <option value="">Избери количество</option>
+                    <option value="x 10 boxes">x 10 BOXES</option>
+                    <option value="x 20 BOXES">x 20 BOXES</option>
+                    <option value="x 30 BOXES">x 30 BOXES</option>
+                    <option value="x 40 boxes">x 40 BOXES</option>
+                    <option value="x 50 boxes">x 50 BOXES</option>
+                    <option value="x 60 boxes">x 60 BOXES</option>
+                    <option value="x 70 boxes">x 70 BOXES</option>
+                    <option value="x 80 boxes">x 80 BOXES</option>
+                    <option value="x 90 boxes">x 90 BOXES</option>
+                </select>
+                <small class="text-danger"></small>
+                <a class="ml-md-5 text-danger" href="/">Buy</a>
+            </div>
+                </div>
+            </div>
+        </div>
+        <a href="/" class="btn btn-dark">Buy all products |</a>
     </div>
 </main>
-
-
-<div>
     <footer></footer>
 </div>
 </body>
