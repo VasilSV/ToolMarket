@@ -82,16 +82,6 @@ public class SecurityConfig {
         );
     }
     @Bean
-    public ModelMapper modelMapper() {
-        ModelMapper modelMapper = new ModelMapper();
-        Converter<String, LocalDate> toLocalDate = s -> s.getSource() == null ? null
-                : LocalDate.parse((s.getSource()), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        modelMapper.addConverter(toLocalDate);
-
-
-        return modelMapper;
-    }
-    @Bean
     public RestTemplate create(RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder.
                 build();

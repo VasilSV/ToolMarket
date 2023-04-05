@@ -9,5 +9,4 @@ import java.util.List;
 
 @Repository
 public interface ToolRepository extends JpaRepository <ToolEntity, Long> {
-
 }

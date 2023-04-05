@@ -1,9 +1,15 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head::head"></head>
+<head th:replace="fragments/head::head">
+  <meta http-equiv="Content-Type" content="text/html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Tools</title>
+</head>
 
 
 <body>
+<script type="text/javascript" src="/static/js/fetchApp.js" ></script>
 
 <div th:replace="fragments/navbar :: navbar">
   Navbar
@@ -17,7 +23,16 @@
 </div>
 
 <div class="button-holder d-flex justify-content-center">
-  <button type="submit" class="btn btn-warning  mb-3" value="Register">DELETE CUSTOMER</button>
+  <button id="loadTools" type="submit" class="btn btn-warning
+  mb-3" value="Register">UPDATE</button>
+  <table>
+    <thead>
+    <tr>
+      <th>typeCool</th>
+    </tr>
+    </thead>
+    <tbody id="tools-container"></tbody>
+  </table>
 </div>
 <div class="button-holder d-flex justify-content-center">
   <button type="submit" class="btn btn-warning  mb-3" value="Register">CHANGE CUSTOMER DETAILS</button>

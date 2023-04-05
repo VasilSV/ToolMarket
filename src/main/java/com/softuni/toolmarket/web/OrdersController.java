@@ -1,6 +1,8 @@
 package com.softuni.toolmarket.web;
 
 import com.softuni.toolmarket.model.dto.OrdersDTO;
+import com.softuni.toolmarket.service.impl.OrderServiceImpl;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,14 @@ import javax.validation.Valid;
 @RequestMapping("/pages/all")
 public class OrdersController {
 
+    private final OrderServiceImpl orderServiceImpl;
+    private final ModelMapper modelMapper;
+
+    public OrdersController(OrderServiceImpl orderServiceImpl, ModelMapper modelMapper) {
+        this.orderServiceImpl = orderServiceImpl;
+        this.modelMapper = modelMapper;
+    }
+
     @GetMapping("/add")
     public String add(Model model){
         if (!model.containsAttribute("ordersDTO")){
@@ -26,14 +36,19 @@ public class OrdersController {
     }
 
     @PostMapping("/add")
-    public String addConfirm(OrdersDTO ordersDTO,
+    public String addConfirm( OrdersDTO ordersDTO ,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes){
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("ordersDTO", ordersDTO);
-            redirectAttributes.addFlashAttribute(ordersDTO);
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.orderAddBindingModel", bindingResult);
+
             return "redirect:add";
         }
+
+        orderServiceImpl.add(modelMapper.map(ordersDTO , OrderServiceImpl.class));
+
         return "redirect:/";
     }
 

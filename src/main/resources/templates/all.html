@@ -25,7 +25,10 @@
                     <img class="mr-2" src="/images/shovel.jpg" alt="Shovel" width="50px" height="50px">
                     <span>Name: Shovel Price: 8 lv</span>
                 </div>
-                <select class="browser-default custom-select" id="condition1" name="condition">
+                <div class="text-white label-holder d-flex justify-content-center">
+                    <label for="productName" class="h4 mb-2">OrdersEntity</label>
+                </div>
+                <select  class="browser-default custom-select" id="productName" name="productName">
                     <option value="">Избери количество</option>
                     <option value="x 10 boxes">x 10 BOXES</option>
                     <option value="x 20 BOXES">x 20 BOXES</option>
@@ -162,7 +165,7 @@
                 </div>
             </div>
         </div>
-        <a href="/" class="btn btn-dark">Buy all products |</a>
+      <a href="/orders/by/all" class="btn btn-danger" th:text= "|Buy all products for ${totalOrders} lv|"></a>
     </div>
 </main>
     <footer></footer>

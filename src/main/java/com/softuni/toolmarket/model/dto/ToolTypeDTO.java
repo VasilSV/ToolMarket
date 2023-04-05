@@ -1,7 +1,7 @@
 package com.softuni.toolmarket.model.dto;
 
 public class ToolTypeDTO {
-
+    private Long id;
     private String toolTypeName;
 
     public String getToolTypeName() {
@@ -13,11 +13,23 @@ public class ToolTypeDTO {
         return this;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public ToolTypeDTO setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public ToolTypeDTO() {
+    }
 
     @Override
     public String toString() {
         return "ToolTypeDTO{" +
-                "toolTypeName='" + toolTypeName + '\'' +
+                "id=" + id +
+                ", toolTypeName='" + toolTypeName + '\'' +
                 '}';
     }
 }

@@ -12,7 +12,7 @@ public class ToolEntity {
     private Long Id;
     @Column(nullable = false, unique = true)
     private String toolName;
-    @Column(nullable = false, columnDefinition = "text")
+    @Column( columnDefinition = "text")
     private String description;
 
     @ManyToOne

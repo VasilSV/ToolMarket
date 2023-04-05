@@ -8,11 +8,13 @@ import com.softuni.toolmarket.model.entity.ToolTypeEntity;
 
 import com.softuni.toolmarket.repository.ToolRepository;
 import com.softuni.toolmarket.repository.ToolTypeRepository;
-
+import com.softuni.toolmarket.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ToolService {
@@ -20,18 +22,25 @@ public class ToolService {
     private final ToolRepository toolRepository;
 
     private final ToolTypeRepository toolTypeRepository;
+    private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
 
-
-    public ToolService(ToolRepository toolRepository, ToolTypeRepository toolTypeRepository) {
+    public ToolService(ToolRepository toolRepository, ToolTypeRepository toolTypeRepository,
+                       UserRepository userRepository, ModelMapper modelMapper) {
         this.toolRepository = toolRepository;
         this.toolTypeRepository = toolTypeRepository;
+        this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
     }
 
 
     public Optional<ToolsDTO> findToolById(Long toolId) {
         return toolRepository
                 .findById(toolId)
-                .map(this::map);
+                .stream()
+                .map(toolEntity -> modelMapper.map(toolEntity, ToolsDTO.class))
+                .findFirst();
+
     }
 
     public long createTool(ToolsDTO newTool) {
@@ -40,10 +49,11 @@ public class ToolService {
         Optional<ToolTypeEntity> toolTypeOpt =
                 this.toolTypeRepository.findToolTypeEntityByToolTypeName(thisToolTypeName);
 
-        ToolEntity newToolEntity = new ToolEntity()
-                .setToolName(newTool.getToolName())
-                .setToolType(toolTypeOpt.orElseGet(() -> createNewToolType(thisToolTypeName)));
+        ToolEntity newToolEntity = new ToolEntity();
 
+        newToolEntity.setToolName(newTool.getToolName());
+        newToolEntity.setToolType(toolTypeOpt.orElseGet(() -> createNewToolType(thisToolTypeName)));
+        newToolEntity.setId(newTool.getId());
 
         return toolRepository.save(newToolEntity).getId();
     }
@@ -59,19 +69,11 @@ public class ToolService {
 
     public List<ToolsDTO> getAllTools() {
         return
-                toolRepository.findAll().stream().map(this::map).toList();
+                toolRepository.findAll().stream()
+                        .map(toolEntity -> modelMapper.map(toolEntity, ToolsDTO.class))
+                        .collect(Collectors.toList());
 
     }
-
-    private ToolsDTO map(ToolEntity toolEntity) {
-        ToolTypeDTO toolTypeDTO = new ToolTypeDTO()
-                .setToolTypeName(toolEntity.getToolType().getToolTypeName());
-
-        return new ToolsDTO().setId(toolEntity.getId())
-                .setToolTypeEntity(toolTypeDTO)
-                .setDescription(toolEntity.getDescription());
-
-
-    }
-
 }
+
+

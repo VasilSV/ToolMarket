@@ -10,7 +10,7 @@ public class ToolTypeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     @Column(nullable = false)
     private String toolTypeName;
 
@@ -21,11 +21,11 @@ public class ToolTypeEntity {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public ToolTypeEntity setId(Long id) {
-        Id = id;
+        id = id;
         return this;
     }
 
@@ -47,10 +47,11 @@ public class ToolTypeEntity {
         return this;
     }
 
+
     @Override
     public String toString() {
         return "ToolType{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", toolTypeName='" + toolTypeName + '\'' +
                 ", toolEntityList=" + toolEntityList +
                 '}';
