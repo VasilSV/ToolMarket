@@ -1,6 +1,6 @@
 package com.softuni.toolmarket.model.dto;
 
-import com.softuni.toolmarket.model.entity.ToolTypeEntity;
+import com.softuni.toolmarket.model.entity.UserEntity;
 
 public class ToolsDTO {
 

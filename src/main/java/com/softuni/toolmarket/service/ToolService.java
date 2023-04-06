@@ -51,15 +51,21 @@ public class ToolService {
 
         ToolEntity newToolEntity = new ToolEntity();
 
-        newToolEntity.setToolName(newTool.getToolName());
-        newToolEntity.setToolType(toolTypeOpt.orElseGet(() -> createNewToolType(thisToolTypeName)));
-        newToolEntity.setId(newTool.getId());
+        newToolEntity.setToolTypeEntity
+                (toolTypeOpt.orElseGet(() -> createNewToolType(thisToolTypeName)));
+
+        newToolEntity.setDescription(newTool.getDescription());
+        
+
+      //  newToolEntity.setToolName(newTool.getToolName()).
+        //setToolType(toolTypeOpt.orElseGet(() -> createNewToolType(thisToolTypeName)));
+        //newToolEntity.setId(newTool.getId());
 
         return toolRepository.save(newToolEntity).getId();
     }
 
     private ToolTypeEntity createNewToolType(String thisToolTypeName) {
-        return toolTypeRepository.save(new ToolTypeEntity().setToolTypeName(thisToolTypeName));
+        return toolTypeRepository.save(createNewToolType(thisToolTypeName));
     }
 
     public void deleteById(Long toolId) {

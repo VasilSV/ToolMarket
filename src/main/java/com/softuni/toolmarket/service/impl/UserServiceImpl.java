@@ -121,5 +121,6 @@ public class UserServiceImpl implements UserService {
         );
 
         successfulLoginProcessor.accept(authentication);
+
     }
 }

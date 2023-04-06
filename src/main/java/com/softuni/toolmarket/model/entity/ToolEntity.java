@@ -1,5 +1,7 @@
 package com.softuni.toolmarket.model.entity;
 
+import com.softuni.toolmarket.model.dto.UserRegistrationDTO;
+import com.softuni.toolmarket.repository.UserRepository;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
 public class ToolEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     @Column(nullable = false, unique = true)
     private String toolName;
     @Column( columnDefinition = "text")
@@ -26,11 +28,11 @@ public class ToolEntity {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public ToolEntity setId(Long id) {
-        Id = id;
+        this.id = id;
         return this;
     }
 
@@ -91,7 +93,7 @@ public class ToolEntity {
     @Override
     public String toString() {
         return "ToolEntity{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", toolName='" + toolName + '\'' +
                 ", description='" + description + '\'' +
                 ", userName=" + (userName != null ? userName.getUserName() : null) +
@@ -99,4 +101,6 @@ public class ToolEntity {
                 ", orderedTools=" + orderedTools +
                 '}';
     }
+
+
 }

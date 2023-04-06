@@ -1,6 +1,7 @@
 package com.softuni.toolmarket.model.entity;
 
 import jakarta.persistence.*;
+import org.slf4j.helpers.CheckReturnValue;
 
 import java.util.List;
 
@@ -14,7 +15,8 @@ public class ToolTypeEntity {
     @Column(nullable = false)
     private String toolTypeName;
 
-    @OneToMany(mappedBy = "toolTypeEntity")
+   @OneToMany(mappedBy = "toolTypeEntity")
+  //  @Transient
     private List<ToolEntity> toolEntityList;
 
     public ToolTypeEntity() {
@@ -25,7 +27,7 @@ public class ToolTypeEntity {
     }
 
     public ToolTypeEntity setId(Long id) {
-        id = id;
+        this.id = id;
         return this;
     }
 

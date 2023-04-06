@@ -2,8 +2,11 @@ package com.softuni.toolmarket;
 
 import com.softuni.toolmarket.model.entity.ToolEntity;
 import com.softuni.toolmarket.model.entity.ToolTypeEntity;
+import com.softuni.toolmarket.repository.OrdersRepository;
 import com.softuni.toolmarket.repository.ToolRepository;
 import com.softuni.toolmarket.repository.ToolTypeRepository;
+import com.softuni.toolmarket.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +18,17 @@ public class ToolMarketApplicationInit implements CommandLineRunner {
 
     private final ToolRepository toolRepository;
     private final ToolTypeRepository toolTypeRepository;
-
-    public ToolMarketApplicationInit(ToolRepository toolRepository, ToolTypeRepository toolTypeRepository) {
+    private final UserRepository userRepository;
+    private final OrdersRepository ordersRepository;
+@Autowired
+    public ToolMarketApplicationInit(ToolRepository toolRepository, ToolTypeRepository toolTypeRepository,
+                                     UserRepository userRepository,
+                                     OrdersRepository ordersRepository) {
         this.toolRepository = toolRepository;
         this.toolTypeRepository = toolTypeRepository;
 
+        this.userRepository = userRepository;
+        this.ordersRepository = ordersRepository;
     }
 
     @Override
@@ -66,9 +75,12 @@ public class ToolMarketApplicationInit implements CommandLineRunner {
 
 
         ToolEntity aTool = new ToolEntity();
-        aTool.setId(aTool.getId());
+
+
+        aTool.setToolType(toolType);
         aTool.setToolName(toolName);
         aTool.setDescription(description);
+       // aTool.setId(orde);
         allTools.add(aTool);
 
         toolType.setToolEntityList(allTools);

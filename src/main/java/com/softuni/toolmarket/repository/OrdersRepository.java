@@ -19,5 +19,8 @@ public interface OrdersRepository extends JpaRepository<OrdersEntity, Long> {
 @Query("SELECT o.productName FROM OrdersEntity o")
     String findTotalOrders();
 
+
+
+
 //List<OrdersEntity> findAllByToolsOrderStartingWithAndProductName(OrderedProductName productName);
 }
