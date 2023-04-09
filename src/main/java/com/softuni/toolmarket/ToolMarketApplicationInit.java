@@ -80,7 +80,7 @@ public class ToolMarketApplicationInit implements CommandLineRunner {
         aTool.setToolType(toolType);
         aTool.setToolName(toolName);
         aTool.setDescription(description);
-       // aTool.setId(orde);
+        //aTool.setId(toolType.getToolEntityList().get());
         allTools.add(aTool);
 
         toolType.setToolEntityList(allTools);

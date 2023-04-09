@@ -1,15 +1,13 @@
 package com.softuni.toolmarket.model.dto;
 
-import com.softuni.toolmarket.model.entity.UserEntity;
+import javax.validation.constraints.NotBlank;
 
 public class ToolsDTO {
-
     private Long id;
-
+    @NotBlank
     private String toolName;
-
+    @NotBlank
     private String description;
-
     private UserRegistrationDTO userRegister;
 
     private ToolTypeDTO toolTypeEntity;

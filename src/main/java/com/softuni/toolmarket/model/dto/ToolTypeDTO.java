@@ -1,7 +1,10 @@
 package com.softuni.toolmarket.model.dto;
 
+import javax.validation.constraints.NotBlank;
+
 public class ToolTypeDTO {
     private Long id;
+    @NotBlank
     private String toolTypeName;
 
     public String getToolTypeName() {
