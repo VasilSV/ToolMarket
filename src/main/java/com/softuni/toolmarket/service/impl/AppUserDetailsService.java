@@ -2,15 +2,17 @@ package com.softuni.toolmarket.service.impl;
 import com.softuni.toolmarket.model.entity.UserEntity;
 import com.softuni.toolmarket.model.entity.UserRoleEntity;
 import com.softuni.toolmarket.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 
 public class AppUserDetailsService implements UserDetailsService{
 private final UserRepository userRepository;
@@ -26,6 +28,8 @@ private final UserRepository userRepository;
                 map(this::map).
                 orElseThrow(() -> new UsernameNotFoundException("User with email " + email + " not found."));
     }
+
+
     private UserDetails map(UserEntity userEntity) {
         return new User(
                 userEntity.getEmail(),
@@ -43,5 +47,9 @@ private final UserRepository userRepository;
     }
     private GrantedAuthority mapRole(UserRoleEntity userRoleEntity) {
         return new SimpleGrantedAuthority("ROLE_" + userRoleEntity.getRole().name());
+    }
+
+    public UserEntity getUserByUserName(String userName) {
+        return userRepository.findByUserName(userName);
     }
 }
