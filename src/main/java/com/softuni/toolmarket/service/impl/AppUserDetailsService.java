@@ -2,7 +2,6 @@ package com.softuni.toolmarket.service.impl;
 import com.softuni.toolmarket.model.entity.UserEntity;
 import com.softuni.toolmarket.model.entity.UserRoleEntity;
 import com.softuni.toolmarket.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -23,7 +22,7 @@ private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email).
+        return userRepository.findUserEntityByEmail(email).
 
                 map(this::map).
                 orElseThrow(() -> new UsernameNotFoundException("User with email " + email + " not found."));
