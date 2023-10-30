@@ -11,4 +11,4 @@ spring:
 
 app:
   default:
-    password: 123
+    password: www
